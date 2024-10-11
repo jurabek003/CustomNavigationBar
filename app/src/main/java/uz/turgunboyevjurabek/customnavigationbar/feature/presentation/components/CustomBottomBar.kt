@@ -3,11 +3,13 @@ package uz.turgunboyevjurabek.customnavigationbar.feature.presentation.component
 import androidx.compose.foundation.background
 import androidx.compose.foundation.border
 import androidx.compose.foundation.isSystemInDarkTheme
+import androidx.compose.foundation.layout.fillMaxSize
 import androidx.compose.foundation.layout.fillMaxWidth
 import androidx.compose.foundation.layout.height
 import androidx.compose.foundation.layout.navigationBarsPadding
 import androidx.compose.foundation.layout.padding
 import androidx.compose.foundation.layout.size
+import androidx.compose.material3.BottomAppBar
 import androidx.compose.material3.Icon
 import androidx.compose.material3.NavigationBar
 import androidx.compose.material3.NavigationBarItem
@@ -25,6 +27,7 @@ import androidx.compose.runtime.setValue
 import androidx.compose.ui.Modifier
 import androidx.compose.ui.draw.shadow
 import androidx.compose.ui.graphics.Color
+import androidx.compose.ui.graphics.graphicsLayer
 import androidx.compose.ui.res.colorResource
 import androidx.compose.ui.res.painterResource
 import androidx.compose.ui.text.font.FontWeight
@@ -70,20 +73,15 @@ fun CustomBottomBar(modifier: Modifier) {
         mutableStateOf("Asosiy")
     }
 
-    Surface(
-        shape = ShapeDefaults.ExtraLarge,
-        shadowElevation = 5.dp,
-        modifier = modifier
-            .navigationBarsPadding()
-            .padding(horizontal = 15.dp)
-            .padding(bottom = 10.dp)
-            .fillMaxWidth()
-    ) {
         NavigationBar(
             modifier = modifier
-                .border(1.dp, color = Color.Gray, shape = ShapeDefaults.ExtraLarge)
-                .fillMaxWidth()
-                .height(75.dp),
+//                .border(1.dp, color = Color.Gray, shape = ShapeDefaults.ExtraLarge)
+                .shadow(
+                    elevation = 10.dp,
+                    shape = ShapeDefaults.ExtraLarge,
+                    ambientColor = Color.Green,
+                    clip = true
+                ),
         ) {
             items.forEachIndexed { index, bottomNavigationItem ->
                 val color =  if (isSystemInDarkTheme()) {
@@ -115,7 +113,19 @@ fun CustomBottomBar(modifier: Modifier) {
                 )
             }
         }
-    }
+//        Surface(
+//            shape = ShapeDefaults.ExtraLarge,
+//            shadowElevation = 5.dp,
+//            modifier = modifier
+//                .navigationBarsPadding()
+//                .padding(horizontal = 15.dp)
+//                .padding(bottom = 10.dp)
+//                .fillMaxWidth()
+//        ) {
+//
+//        }
+
+
 }
 
 @Preview

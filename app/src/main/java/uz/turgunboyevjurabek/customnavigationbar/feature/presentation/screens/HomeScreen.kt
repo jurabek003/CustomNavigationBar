@@ -49,18 +49,23 @@ import androidx.constraintlayout.compose.ConstraintLayout
 import uz.turgunboyevjurabek.customnavigationbar.R
 import uz.turgunboyevjurabek.customnavigationbar.feature.domain.madels.BottomNavigationItem
 import uz.turgunboyevjurabek.customnavigationbar.feature.presentation.components.CustomBottomBar
+import uz.turgunboyevjurabek.customnavigationbar.feature.presentation.components.CustomTopBar
 import uz.turgunboyevjurabek.customnavigationbar.feature.presentation.components.ListUI
 
 @SuppressLint("UnusedMaterial3ScaffoldPaddingParameter", "RememberReturnType")
 @Composable
 fun HomeScreen(modifier: Modifier = Modifier) {
     Scaffold(
+        topBar = {
+            CustomTopBar()
+        },
         bottomBar = {
             CustomBottomBar(modifier = modifier)
         },
-        content = {
+        content = {innerPadding->
             Column(
                 modifier = modifier
+                    .padding(innerPadding)
                     .fillMaxSize()
             ) {
                 LazyColumn(
