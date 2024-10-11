@@ -33,8 +33,7 @@ fun ListUI(modifier: Modifier = Modifier) {
             .padding(horizontal = 20.dp)
     ) {
         Column(
-            modifier = modifier
-                .fillMaxSize(),
+            modifier = modifier,
             horizontalAlignment = Alignment.CenterHorizontally,
             verticalArrangement = Arrangement.Center
         ) {

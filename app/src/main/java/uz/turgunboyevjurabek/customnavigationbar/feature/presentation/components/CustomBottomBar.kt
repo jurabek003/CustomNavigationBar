@@ -1,8 +1,10 @@
 package uz.turgunboyevjurabek.customnavigationbar.feature.presentation.components
 
 import androidx.compose.foundation.background
+import androidx.compose.foundation.border
 import androidx.compose.foundation.isSystemInDarkTheme
 import androidx.compose.foundation.layout.fillMaxWidth
+import androidx.compose.foundation.layout.height
 import androidx.compose.foundation.layout.navigationBarsPadding
 import androidx.compose.foundation.layout.padding
 import androidx.compose.foundation.layout.size
@@ -21,6 +23,7 @@ import androidx.compose.runtime.mutableStateOf
 import androidx.compose.runtime.saveable.rememberSaveable
 import androidx.compose.runtime.setValue
 import androidx.compose.ui.Modifier
+import androidx.compose.ui.draw.shadow
 import androidx.compose.ui.graphics.Color
 import androidx.compose.ui.res.colorResource
 import androidx.compose.ui.res.painterResource
@@ -32,7 +35,7 @@ import uz.turgunboyevjurabek.customnavigationbar.R
 import uz.turgunboyevjurabek.customnavigationbar.feature.domain.madels.BottomNavigationItem
 
 @Composable
-fun CustomBottomBar(modifier: Modifier = Modifier) {
+fun CustomBottomBar(modifier: Modifier) {
     val items = listOf(
         BottomNavigationItem(
             title = "Home",
@@ -69,14 +72,19 @@ fun CustomBottomBar(modifier: Modifier = Modifier) {
 
     Surface(
         shape = ShapeDefaults.ExtraLarge,
+        shadowElevation = 5.dp,
         modifier = modifier
-            .background(Color.Transparent)
-            .padding(horizontal = 15.dp)
             .navigationBarsPadding()
+            .padding(horizontal = 15.dp)
             .padding(bottom = 10.dp)
             .fillMaxWidth()
     ) {
-        NavigationBar {
+        NavigationBar(
+            modifier = modifier
+                .border(1.dp, color = Color.Gray, shape = ShapeDefaults.ExtraLarge)
+                .fillMaxWidth()
+                .height(75.dp),
+        ) {
             items.forEachIndexed { index, bottomNavigationItem ->
                 val color =  if (isSystemInDarkTheme()) {
                     if (selectedTabIndex == index) colorResource(id = R.color.select_ic) else Color.LightGray
@@ -86,7 +94,8 @@ fun CustomBottomBar(modifier: Modifier = Modifier) {
 
                 val fontWeight=if (selectedTabIndex == index) FontWeight.Bold else FontWeight.Normal
 
-                NavigationBarItem(selected = selectedTabIndex == index,
+                NavigationBarItem(
+                    selected = selectedTabIndex == index,
                     onClick = { selectedTabIndex=index },
                     icon = {
                         Icon(
@@ -112,5 +121,5 @@ fun CustomBottomBar(modifier: Modifier = Modifier) {
 @Preview
 @Composable
 private fun CustomBottomBarPreview() {
-    CustomBottomBar()
+//    CustomBottomBar()
 }
